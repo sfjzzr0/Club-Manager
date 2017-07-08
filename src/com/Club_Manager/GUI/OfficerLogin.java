@@ -10,9 +10,12 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import com.Club_Manager.Input.LoginChecker;
+
 public class OfficerLogin extends JPanel{
 
 	public Window window;
+	public LoginChecker loginChecker;
 	
 	public JLabel title;
 	public JLabel username;
@@ -56,6 +59,11 @@ public class OfficerLogin extends JPanel{
 				(int)(new_officer.getPreferredSize().getWidth()), (int)(new_officer.getPreferredSize().getHeight()));
 	}
 	
+	//To Implement
+	public void LoginFailed() {
+		
+	}
+	
 	public void addAllElements() {
 		add(title);
 		add(username);
@@ -71,6 +79,9 @@ public class OfficerLogin extends JPanel{
 		
 		//Sets the variable window for future use
 		this.window = window;
+		
+		//Initializes the LoginChecker
+		loginChecker = new LoginChecker(this);
 		
 		//Initializing title attributes
 		title = new JLabel("Officer Login");
@@ -97,7 +108,12 @@ public class OfficerLogin extends JPanel{
 		login.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(passwordField.getText());
+				if (loginChecker.check(usernameField.getText(), passwordField.getText())) {
+					window.login();
+				}
+				else {
+					LoginFailed();
+				}
 			}
 		});
 

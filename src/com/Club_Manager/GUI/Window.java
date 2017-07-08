@@ -8,16 +8,22 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
+import com.Club_Manager.Main.Main;
+
 public class Window extends JFrame implements ActionListener{
 	
 	public OfficerLogin officerLogin;
 	public Timer timer;
+	public Main main;
 	
 	public String programState = "Officer Login";	//This will be used to keep track of what the program has to display
 													//More info on the different states can be found in the ActionPerformed method
 	public final int WIDTH = 750;
 	public final int HEIGHT = 1000;
 	
+	public void login() {
+		
+	}
 	
 	public void createTimer() {
 		timer = new Timer(10, this);
@@ -27,9 +33,12 @@ public class Window extends JFrame implements ActionListener{
 		timer.start();
 	}
 	
-	public Window() {
+	public Window(Main main) {
 		//Initializing the JFrame super class
 		super("Officer Manager");
+		
+		this.main = main;
+		
 		setSize(HEIGHT, WIDTH);
 		setResizable(true);
 		setLocationRelativeTo(null);
@@ -46,6 +55,8 @@ public class Window extends JFrame implements ActionListener{
 			officerLogin = new OfficerLogin(this);
 			add(officerLogin);
 		}
+		
+		
 		
 		//Creates the update loop
 		createTimer();
