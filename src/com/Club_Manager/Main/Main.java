@@ -13,8 +13,9 @@ public class Main {
 	
 	public Main() {
 		//Starting the window class
-		new Window(this);
+//		new Window(this);
 		logger = new Logger();
+		logger.write();
 	}
 	
 	public void log (String temp) {
