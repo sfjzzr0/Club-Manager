@@ -2,6 +2,7 @@ package com.Club_Manager.Input;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -41,6 +42,7 @@ public class LoginChecker {
 					officerLogin.window.main.log("[ERROR] - Officer login file has an error...");
 			}
 			
+			scanner.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -52,6 +54,21 @@ public class LoginChecker {
 		//Stores the variables permanently to the object
 		this.username = username;
 		this.password = password;
+		boolean usernameFound = false;
+		
+		officerLogin.window.main.logger.log(officerLogin.window.main.getDate(), "Username [" + username + "]" + "attempted login\n");
+		
+		if (officers.containsKey(username)) {
+			usernameFound = true;
+		}
+		
+		if (usernameFound && password.equals(officers.get(username))){
+			officerLogin.window.main.logger.log(officerLogin.window.main.getDate(), "Username [" + username + "]" + "succeeded login\n");
+			
+			return true;
+		}
+		
+		officerLogin.window.main.logger.log(officerLogin.window.main.getDate(), "Username [" + username + "]" + "failed login\n");
 		
 		return false;
 	}

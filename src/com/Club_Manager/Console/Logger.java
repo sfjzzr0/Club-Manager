@@ -14,27 +14,29 @@ public class Logger {
 	public Scanner scanner;
 	public PrintWriter out;
 	ArrayList<String> lines;
+	ArrayList<String> prevLines;
 	
 	public Logger () {
+		prevLines = readFile();
+		
 		lines = new ArrayList<String>();
-		lines.add("hello");
-		lines.add("fef");
+
 	}
 	
 	public void log(String date, String temp) {
-		
+		lines.add(date + ": " + temp);
 	}
 	
 	public void log(String temp) {
-		
+		lines.add(temp);
 	}
 	
-	public void write() {
+	public void write() { //This runs when the program is about to close to save all of the progress
 		try {
 			out = new PrintWriter(new File("./src/com/Club_Manager/Resources/Log.txt"));
 			
-			for (String s : readFile())
-				System.out.println(s);
+			for (String s : prevLines)
+				out.println(s);
 			
 			for (String s : lines)
 				out.print(s);
@@ -61,7 +63,7 @@ public class Logger {
 					    "Warning",
 					    JOptionPane.WARNING_MESSAGE);
 			}
-			System.out.println(temp.size());
+			scanner.close();
 			return temp;
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

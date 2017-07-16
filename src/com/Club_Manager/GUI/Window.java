@@ -4,10 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
+import com.Club_Manager.Console.Logger;
 import com.Club_Manager.Main.Main;
 
 public class Window extends JFrame implements ActionListener{
@@ -15,6 +19,7 @@ public class Window extends JFrame implements ActionListener{
 	public OfficerLogin officerLogin;
 	public Timer timer;
 	public Main main;
+	public Logger logger;
 	
 	public String programState = "Officer Login";	//This will be used to keep track of what the program has to display
 													//More info on the different states can be found in the ActionPerformed method
@@ -26,27 +31,27 @@ public class Window extends JFrame implements ActionListener{
 	}
 	
 	public void createTimer() {
-		timer = new Timer(10, this);
+		timer = new Timer(10,this);
 	}
 	
 	public void startTimer() {
 		timer.start();
 	}
 	
-	public Window(Main main) {
+	public Window(Main main, Logger logger) {
 		//Initializing the JFrame super class
 		super("Officer Manager");
 		
 		this.main = main;
+		this.logger = logger;
 		
 		setSize(HEIGHT, WIDTH);
 		setResizable(true);
 		setLocationRelativeTo(null);
-		addWindowListener(new WindowAdapter()
-		{
-		    public void windowClosing(WindowEvent e)
+		addWindowListener(new WindowAdapter(){
+			public void windowClosing(WindowEvent e)
 		    {
-		       System.exit(0);
+		       exit();
 		    }
 		});
 		
@@ -78,6 +83,14 @@ public class Window extends JFrame implements ActionListener{
 		if (programState.equals("Officer Login")){
 			officerLogin.tick();
 		}
+	}
+	
+	public void exit(){
+		DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+		Calendar calobj = Calendar.getInstance();
+		main.logger.log("-----Ended Application-----" + df.format(calobj.getTime()) + "\n");
+		main.logger.write();
+		System.exit(0);
 	}
 	
 }

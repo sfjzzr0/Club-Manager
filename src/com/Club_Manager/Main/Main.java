@@ -9,13 +9,18 @@ import com.Club_Manager.GUI.Window;
 
 public class Main {
 
-	Logger logger;
+	public Logger logger;
 	
 	public Main() {
-		//Starting the window class
-//		new Window(this);
 		logger = new Logger();
-		logger.write();
+		
+		DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+		Calendar calobj = Calendar.getInstance();
+		
+		//Starting the window class
+		new Window(this, logger);
+		
+		logger.log("-----Started Application-----" + df.format(calobj.getTime()) + "\n");
 	}
 	
 	public void log (String temp) {
@@ -24,6 +29,12 @@ public class Main {
 		System.out.println(df.format(calobj.getTime()));
 		
 		logger.log(df.format(calobj.getTime()), temp);
+	}
+	
+	public String getDate() {
+		DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+		Calendar calobj = Calendar.getInstance();
+		return df.format(calobj.getTime());
 	}
 	
 	public static void main(String[] args) {
@@ -40,6 +51,8 @@ public class Main {
 	 * - make the "tick()" method more efficient 
 	 * - implement the failedLogin() method
 	 * - make sure program logs everything
+	 * - if time permits be able to log when the program is running and not right before it closes to make sure that
+	 *   even of the program stops, you can still see what was being done
 	 */
 	
 }

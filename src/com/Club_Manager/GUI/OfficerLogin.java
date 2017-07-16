@@ -108,8 +108,10 @@ public class OfficerLogin extends JPanel{
 		login.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("Checking");
 				if (loginChecker.check(usernameField.getText(), passwordField.getText())) {
 					window.login();
+					System.out.println("logged in");
 				}
 				else {
 					LoginFailed();
