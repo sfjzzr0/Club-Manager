@@ -123,7 +123,6 @@ public class OfficerLogin extends JPanel{
 		new_officer = new JButton();
 		new_officer.setText("New Officer?");
 
-
 		addAllElements();
 		tick();
 				
