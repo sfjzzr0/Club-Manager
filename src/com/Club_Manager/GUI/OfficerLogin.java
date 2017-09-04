@@ -5,7 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -27,11 +29,12 @@ public class OfficerLogin extends JPanel{
 	public JTextField usernameField;
 	public JPasswordField passwordField;
 	
+	
 	public void tick() {
 		//This method is invoked whenever this JPanel is visible
 		
 		//Sets the boundaries of the title
-		title.setBounds(window.getWidth()/2-((int)title.getPreferredSize().getWidth()/2), window.getHeight()/6, 
+		title.setBounds(window.getWidth()/2-((int)title.getPreferredSize().getWidth())/2, window.getHeight()/5, 
 				(int)title.getPreferredSize().getWidth(), (int)title.getPreferredSize().getHeight());
 
 		//Sets the boundaries of the user-name
@@ -57,11 +60,18 @@ public class OfficerLogin extends JPanel{
 		//Sets the boundaries of the Login Button
 		new_officer.setBounds(10, getHeight()-((int)(new_officer.getPreferredSize().getHeight()) + 10), 
 				(int)(new_officer.getPreferredSize().getWidth()), (int)(new_officer.getPreferredSize().getHeight()));
+		
 	}
 	
 	//To Implement
 	public void LoginFailed() {
+		JOptionPane.showMessageDialog(new JFrame(),
+			    "The username or password that you entered was incorrect. Please try again!",
+			    "Warning",
+			    JOptionPane.WARNING_MESSAGE);
 		
+		usernameField.setText("");
+		passwordField.setText("");
 	}
 	
 	public void addAllElements() {
@@ -74,6 +84,17 @@ public class OfficerLogin extends JPanel{
 		add(new_officer);
 	}
 	
+	public void removeAllElements() {
+		remove(title);
+		remove(username);
+		remove(password);
+		remove(usernameField);
+		remove(passwordField);
+		remove(login);
+		remove(new_officer);
+	}
+
+	
 	public OfficerLogin(Window window) {
 		super.setLayout(null);
 		
@@ -84,7 +105,7 @@ public class OfficerLogin extends JPanel{
 		loginChecker = new LoginChecker(this);
 		
 		//Initializing title attributes
-		title = new JLabel("Officer Login");
+		title = new JLabel("Officer Login:");
 		title.setFont(new Font("Arial", 2, 35));
 		
 		//Initializing user-name attributes
@@ -98,20 +119,23 @@ public class OfficerLogin extends JPanel{
 		//Initializing username entry box
 		usernameField = new JTextField();
 		usernameField.setToolTipText("Enter Username");
+		usernameField.setFont(new Font("Arial", 0, 25));
 		
 		//Initializing password entry box
-		passwordField = new JPasswordField();	
-		
+		passwordField = new JPasswordField();
+		passwordField.setToolTipText("Enter Password");
+		passwordField.setFont(new Font("Arial", 2, 35));
+			
 		//Initializing Login Button attributes
 		login = new JButton();
 		login.setText("Login");
+		login.setFont(new Font("Arial", 0, 30));
 		login.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Checking");
 				if (loginChecker.check(usernameField.getText(), passwordField.getText())) {
+					removeAllElements();
 					window.login();
-					System.out.println("logged in");
 				}
 				else {
 					LoginFailed();
@@ -121,7 +145,8 @@ public class OfficerLogin extends JPanel{
 
 		//Initializing New Officer Button attributes
 		new_officer = new JButton();
-		new_officer.setText("New Officer?");
+		new_officer.setText("Add New Officer");
+		new_officer.setFont(new Font("Arial", 0, 30));
 
 		addAllElements();
 		tick();
