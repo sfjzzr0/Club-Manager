@@ -134,3 +134,23 @@
 08/28/17 22:43:19: Username [yousuf]attempted login
 08/28/17 22:43:19: Username [yousuf]succeeded login
 -----Ended Application-----08/28/17 22:43:22
+-----Started Application-----09/04/17 17:02:12
+09/04/17 17:02:38: Username [yousuf]attempted login
+09/04/17 17:02:38: Username [yousuf]succeeded login
+-----Ended Application-----09/04/17 17:02:40
+-----Started Application-----09/04/17 17:02:41
+09/04/17 17:02:47: Username [yousuf]attempted login
+09/04/17 17:02:47: Username [yousuf]failed login
+-----Ended Application-----09/04/17 17:02:52
+-----Started Application-----09/04/17 17:03:07
+-----Ended Application-----09/04/17 17:03:15
+-----Started Application-----09/04/17 17:03:23
+-----Ended Application-----09/04/17 17:03:27
+-----Started Application-----09/04/17 17:08:43
+-----Ended Application-----09/04/17 17:08:57
+-----Started Application-----09/04/17 17:09:06
+-----Ended Application-----09/04/17 17:09:13
+-----Started Application-----09/04/17 17:15:28
+09/04/17 17:15:35: Username [yousuf]attempted login
+09/04/17 17:15:35: Username [yousuf]succeeded login
+-----Ended Application-----09/04/17 17:15:38

@@ -3,6 +3,8 @@ package com.Club_Manager.GUI;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -82,6 +84,7 @@ public class OfficerLogin extends JPanel{
 		add(passwordField);
 		add(login);
 		add(new_officer);
+		window.getRootPane().setDefaultButton(login);
 	}
 	
 	public void removeAllElements() {
@@ -124,12 +127,12 @@ public class OfficerLogin extends JPanel{
 		//Initializing password entry box
 		passwordField = new JPasswordField();
 		passwordField.setToolTipText("Enter Password");
-		passwordField.setFont(new Font("Arial", 2, 35));
+		passwordField.setFont(new Font("Arial", 2, 20));
 			
 		//Initializing Login Button attributes
 		login = new JButton();
 		login.setText("Login");
-		login.setFont(new Font("Arial", 0, 30));
+		login.setFont(new Font("Arial", 0, 20));
 		login.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -146,7 +149,7 @@ public class OfficerLogin extends JPanel{
 		//Initializing New Officer Button attributes
 		new_officer = new JButton();
 		new_officer.setText("Add New Officer");
-		new_officer.setFont(new Font("Arial", 0, 30));
+		new_officer.setFont(new Font("Arial", 0, 20));
 
 		addAllElements();
 		tick();
