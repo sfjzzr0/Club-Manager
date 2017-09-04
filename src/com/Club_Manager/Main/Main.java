@@ -14,7 +14,7 @@ public class Main {
 	public Main() {
 		logger = new Logger();
 		
-		DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+		DateFormat df = new SimpleDateFormat("MM/dd/yy HH:mm:ss");
 		Calendar calobj = Calendar.getInstance();
 		
 		//Starting the window class
@@ -24,7 +24,7 @@ public class Main {
 	}
 	
 	public void log (String temp) {
-		DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+		DateFormat df = new SimpleDateFormat("MM/dd/yy HH:mm:ss");
 		Calendar calobj = Calendar.getInstance();
 		System.out.println(df.format(calobj.getTime()));
 		
@@ -32,7 +32,7 @@ public class Main {
 	}
 	
 	public String getDate() {
-		DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+		DateFormat df = new SimpleDateFormat("MM/dd/yy HH:mm:ss");
 		Calendar calobj = Calendar.getInstance();
 		return df.format(calobj.getTime());
 	}

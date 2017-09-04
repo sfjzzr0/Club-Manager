@@ -17,6 +17,7 @@ import com.Club_Manager.Main.Main;
 public class Window extends JFrame implements ActionListener{
 	
 	public OfficerLogin officerLogin;
+	public Home home;
 	public Timer timer;
 	public Main main;
 	public Logger logger;
@@ -27,7 +28,10 @@ public class Window extends JFrame implements ActionListener{
 	public final int HEIGHT = 1000;
 	
 	public void login() {
-		
+		programState = "Home [default]";
+		home = new Home();
+		add(home);
+		repaint();
 	}
 	
 	public void createTimer() {
@@ -72,7 +76,7 @@ public class Window extends JFrame implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {
 		/*
-		 * The variable "programState" can exhibt different values to tell this Window class what to display
+		 * The variable "programState" can exhibit different values to tell this Window class what to display
 		 * the following is the key to the different values it can hold:
 		 * - "Officer Login"
 		 * - "Home [default]"
@@ -83,10 +87,13 @@ public class Window extends JFrame implements ActionListener{
 		if (programState.equals("Officer Login")){
 			officerLogin.tick();
 		}
+		else if (programState.equals("Home [default]")){
+			home.tick();
+		}
 	}
 	
 	public void exit(){
-		DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+		DateFormat df = new SimpleDateFormat("MM/dd/yy HH:mm:ss");
 		Calendar calobj = Calendar.getInstance();
 		main.logger.log("-----Ended Application-----" + df.format(calobj.getTime()) + "\n");
 		main.logger.write();
