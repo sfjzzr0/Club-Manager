@@ -150,7 +150,17 @@ public class OfficerLogin extends JPanel{
 		new_officer = new JButton();
 		new_officer.setText("Add New Officer");
 		new_officer.setFont(new Font("Arial", 0, 20));
+		new_officer.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				removeAllElements();
+				window.openNewOfficer();
+			}
+			
+		});
+		
 		addAllElements();
 		tick();
 				
