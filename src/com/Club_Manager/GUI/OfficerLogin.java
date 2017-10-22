@@ -87,17 +87,6 @@ public class OfficerLogin extends JPanel{
 		window.getRootPane().setDefaultButton(login);
 	}
 	
-	public void removeAllElements() {
-		remove(title);
-		remove(username);
-		remove(password);
-		remove(usernameField);
-		remove(passwordField);
-		remove(login);
-		remove(new_officer);
-	}
-
-	
 	public OfficerLogin(Window window) {
 		super.setLayout(null);
 		
@@ -137,7 +126,6 @@ public class OfficerLogin extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (loginChecker.check(usernameField.getText(), passwordField.getText())) {
-					removeAllElements();
 					window.login();
 				}
 				else {

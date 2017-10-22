@@ -1,5 +1,6 @@
 package com.Club_Manager.GUI;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -17,6 +18,7 @@ import com.Club_Manager.Main.Main;
 public class Window extends JFrame implements ActionListener{
 	
 	public OfficerLogin officerLogin;
+	public BorderLayout borderLayout;
 	public Home home;
 	public Timer timer;
 	public Main main;
@@ -29,9 +31,17 @@ public class Window extends JFrame implements ActionListener{
 	
 	public void login() {
 		programState = "Home [default]";
-		home = new Home();
-		add(home);
-		repaint();
+		home = new Home(this);
+		getContentPane().remove(officerLogin);	
+		setBorderLayout();
+		add(home, BorderLayout.CENTER);
+		getContentPane().invalidate();	//This and the line after it forces the frame to be redrawn along with 
+		getContentPane().validate();	//its subcomponents 
+	}
+	
+	public void setBorderLayout() {
+		borderLayout = new BorderLayout();
+		setLayout(borderLayout);
 	}
 	
 	public void createTimer() {
@@ -95,7 +105,7 @@ public class Window extends JFrame implements ActionListener{
 	public void exit(){
 		DateFormat df = new SimpleDateFormat("MM/dd/yy HH:mm:ss");
 		Calendar calobj = Calendar.getInstance();
-		main.logger.log("-----Ended Application-----" + df.format(calobj.getTime()) + "\n");
+		main.logger.log("-----Ended Application-----" + df.format(calobj.getTime()));
 		main.logger.write();
 		System.exit(0);
 	}

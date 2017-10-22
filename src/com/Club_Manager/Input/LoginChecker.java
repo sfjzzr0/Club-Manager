@@ -32,14 +32,14 @@ public class LoginChecker {
 	
 	public void readFile() {
 		try {
-			Scanner scanner = new Scanner(new File("./src/com/Club_Manager/Resources/Login.txt"));
+			Scanner scanner = new Scanner(new File("./src/com/Club_Manager/Resources/Login.data"));
 			
 			while (scanner.hasNext()) {
 				String[] temp = scanner.nextLine().split(" ");
 				if (temp.length == 2)
 					officers.put(temp[0], temp[1]);
 				else 
-					officerLogin.window.main.log("[ERROR] - Officer login file has an error...");
+					officerLogin.window.logger.logAction("[ERROR] - Officer login file has an error...");
 			}
 			
 			scanner.close();
@@ -54,21 +54,16 @@ public class LoginChecker {
 		//Stores the variables permanently to the object
 		this.username = username;
 		this.password = password;
-		boolean usernameFound = false;
 		
-		officerLogin.window.main.logger.log(officerLogin.window.main.getDate(), "Username [" + username + "]" + "attempted login\n");
+		officerLogin.window.logger.logAction("Username [" + username + "]" + "attempted login\n");
 		
-		if (officers.containsKey(username)) {
-			usernameFound = true;
-		}
-		
-		if (usernameFound && password.equals(officers.get(username))){
-			officerLogin.window.main.logger.log(officerLogin.window.main.getDate(), "Username [" + username + "]" + "succeeded login\n");
+		if (officers.containsKey(username) && password.equals(officers.get(username))){
+			officerLogin.window.logger.logAction("Username [" + username + "]" + "succeeded login\n");
 			
 			return true;
 		}
 		
-		officerLogin.window.main.logger.log(officerLogin.window.main.getDate(), "Username [" + username + "]" + "failed login\n");
+		officerLogin.window.logger.logAction("Username [" + username + "]" + "failed login\n");
 		
 		return false;
 	}
