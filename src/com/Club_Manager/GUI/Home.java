@@ -1,15 +1,15 @@
 package com.Club_Manager.GUI;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.GridLayout;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class Home extends JPanel{
 
@@ -26,6 +26,8 @@ public class Home extends JPanel{
 	
 	JTabbedPane tabbedPane;
 	public void tick() {
+		tabbedPane.setBounds(15,0, window.getWidth()-50, window.getHeight()-90);
+		
 		if (tabbedPane.getSelectedComponent() != null && tabbedPane.getSelectedComponent().equals(signIn))
 			signIn.tick();
 		else if (tabbedPane.getSelectedComponent() != null && tabbedPane.getSelectedComponent().equals(membersList))
@@ -63,12 +65,14 @@ public class Home extends JPanel{
 //		menuBar.add(edit); To be implemented later --- check above for note
 		menuBar.add(view);
 		
-		tabbedPane.add("tab 1", signIn);
-		tabbedPane.add("Members", membersList);
-		tabbedPane.add("Roster", roster);
+		tabbedPane.addTab("tab 1", signIn);
+		tabbedPane.addTab("Members", membersList);
+		tabbedPane.addTab("Roster", roster);
 		
 		this.window.setJMenuBar(menuBar);
-		this.window.add(tabbedPane);
+//		this.window.setBorderLayout();
+//		this.window.add(tabbedPane, BorderLayout.CENTER);
+		window.add(tabbedPane);
 		window.setVisible(true);
 	}
 }

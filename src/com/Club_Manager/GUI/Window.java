@@ -16,13 +16,13 @@ import com.Club_Manager.Console.Logger;
 import com.Club_Manager.Main.Main;
 
 public class Window extends JFrame implements ActionListener{
-	
+
 	public OfficerLogin officerLogin;
-<<<<<<< HEAD
+	
 	public BorderLayout borderLayout;
-=======
+
 	public NewOfficer newOfficer;
->>>>>>> origin/master
+	
 	public Home home;
 	public Timer timer;
 	public Main main;
@@ -41,18 +41,22 @@ public class Window extends JFrame implements ActionListener{
 		add(home, BorderLayout.CENTER);
 		getContentPane().invalidate();	//This and the line after it forces the frame to be redrawn along with 
 		getContentPane().validate();	//its subcomponents 
+		setVisible(true);
 	}
 	
 	public void setBorderLayout() {
 		borderLayout = new BorderLayout();
-		setLayout(borderLayout);
+		getContentPane().setLayout(borderLayout);
 	}
 	
 	public void openNewOfficer() {
 		programState = "New Officer";
 		newOfficer = new NewOfficer(this);
-		add(newOfficer);
-		repaint();
+		getContentPane().remove(officerLogin);
+		setBorderLayout();
+		add(newOfficer, BorderLayout.CENTER);
+		getContentPane().invalidate();	
+		getContentPane().validate();
 		setVisible(true);
 	}
 	
