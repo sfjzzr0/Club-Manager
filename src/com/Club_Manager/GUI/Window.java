@@ -18,7 +18,11 @@ import com.Club_Manager.Main.Main;
 public class Window extends JFrame implements ActionListener{
 	
 	public OfficerLogin officerLogin;
+<<<<<<< HEAD
 	public BorderLayout borderLayout;
+=======
+	public NewOfficer newOfficer;
+>>>>>>> origin/master
 	public Home home;
 	public Timer timer;
 	public Main main;
@@ -42,6 +46,14 @@ public class Window extends JFrame implements ActionListener{
 	public void setBorderLayout() {
 		borderLayout = new BorderLayout();
 		setLayout(borderLayout);
+	}
+	
+	public void openNewOfficer() {
+		programState = "New Officer";
+		newOfficer = new NewOfficer(this);
+		add(newOfficer);
+		repaint();
+		setVisible(true);
 	}
 	
 	public void createTimer() {
@@ -89,6 +101,7 @@ public class Window extends JFrame implements ActionListener{
 		 * The variable "programState" can exhibit different values to tell this Window class what to display
 		 * the following is the key to the different values it can hold:
 		 * - "Officer Login"
+		 * - "New Officer"
 		 * - "Home [default]"
 		 * - "Home [members]"
 		 * - "Home [roster]"
@@ -96,6 +109,9 @@ public class Window extends JFrame implements ActionListener{
 		
 		if (programState.equals("Officer Login")){
 			officerLogin.tick();
+		}
+		else if (programState.equals("New Officer")){
+			newOfficer.tick();
 		}
 		else if (programState.equals("Home [default]")){
 			home.tick();
