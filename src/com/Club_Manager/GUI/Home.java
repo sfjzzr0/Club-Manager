@@ -65,7 +65,7 @@ public class Home extends JPanel{
 //		menuBar.add(edit); To be implemented later --- check above for note
 		menuBar.add(view);
 		
-		tabbedPane.addTab("tab 1", signIn);
+		tabbedPane.addTab("Meeting Sign-In", signIn);
 		tabbedPane.addTab("Members", membersList);
 		tabbedPane.addTab("Roster", roster);
 		

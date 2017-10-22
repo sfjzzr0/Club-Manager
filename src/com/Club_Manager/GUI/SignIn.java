@@ -27,7 +27,7 @@ public class SignIn extends JPanel{
 		subPanel.add(dateLabel);
 		subPanel.add(dateEntry);
 		
-		horz.add(Box.createHorizontalStrut(-280));
+		horz.add(Box.createHorizontalStrut(-270));
 		horz.add(subPanel);
 		horz.add(Box.createHorizontalGlue());
 		
