@@ -65,7 +65,6 @@ public class OfficerLogin extends JPanel{
 		
 	}
 	
-	//To Implement
 	public void LoginFailed() {
 		JOptionPane.showMessageDialog(new JFrame(),
 			    "The username or password that you entered was incorrect. Please try again!",

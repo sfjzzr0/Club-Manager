@@ -2,14 +2,35 @@ package com.Club_Manager.Input;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class MakeMembers {
 
 	boolean membersMade = false;
 	ArrayList<Member> members;
+	
+	public void saveMembers() {
+		try {
+			PrintWriter out = new PrintWriter(new File("./src/com/Club_Manager/Resources/Members.data"));
+			
+			for (Member member : members) {
+				out.println(member.toString());
+			}
+			out.close();
+			
+		} catch (FileNotFoundException e) {
+			JOptionPane.showMessageDialog(new JFrame(),
+				    "Something wrong happened and the process to saving the members was interrupted. Please check over the file"
+				    + " to see that nothing was accediantly deleted.",
+				    "Warning",
+				    JOptionPane.WARNING_MESSAGE);
+		}
+	}
 	
 	public MakeMembers() {
 		members = new ArrayList<Member>();
@@ -26,10 +47,15 @@ public class MakeMembers {
 			}
 			s.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			System.out.println("The member file was not found! Please check the path in the code.");
+			JOptionPane.showMessageDialog(new JFrame(),
+					"The member file was not found! Please check the path in the code.",
+				    "Warning",
+				    JOptionPane.WARNING_MESSAGE);
 		} catch (NumberFormatException e) {
-			System.out.println("There was an error with one of the member's information in the file \"Members.data\"");
+			JOptionPane.showMessageDialog(new JFrame(),
+				    "There was an error with one of the member's information in the file \"Members.data\"",
+				    "Warning",
+				    JOptionPane.WARNING_MESSAGE);
 		}
 	}
 	

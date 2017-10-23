@@ -2,6 +2,7 @@ package com.Club_Manager.GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Font;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -48,19 +49,24 @@ public class Home extends JPanel{
 		file = new JMenu("File");
 //		edit = new JMenu("Edit");  This will be implemented later to be seen only by the admin to edit the officer list
 		view = new JMenu("View");
-		importMembers = new JMenuItem("");
-		export = new JMenuItem("");
-		reset = new JMenuItem("");
-		viewLog = new JMenuItem("");
+		importMembers = new JMenuItem("Import Members");
+		export = new JMenuItem("Export Members");
+		reset = new JMenuItem("Reset Members");
+		viewLog = new JMenuItem("View Log");
 		
 		tabbedPane = new JTabbedPane();
+		tabbedPane.setFont(new Font("Arial", 2, 25));
 		
 		//adding sub-elements to the menuBar
+		file.setFont(new Font("Arial", 0, 15));
 		file.add(importMembers);
 		file.add(export);
 		file.add(viewLog);
 //		edit.add(reset);
 		
+		view.setFont(new Font("Arial", 0, 15));
+		
+		menuBar.setFont(new Font("Arial", 0, 15));
 		menuBar.add(file);
 //		menuBar.add(edit); To be implemented later --- check above for note
 		menuBar.add(view);

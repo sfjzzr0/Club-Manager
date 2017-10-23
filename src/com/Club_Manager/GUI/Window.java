@@ -34,7 +34,7 @@ public class Window extends JFrame implements ActionListener{
 	public final int HEIGHT = 1000;
 	
 	public void login() {
-		programState = "Home [default]";
+		programState = "Home";
 		home = new Home(this);
 		getContentPane().remove(officerLogin);	
 		setBorderLayout();
@@ -58,6 +58,13 @@ public class Window extends JFrame implements ActionListener{
 		getContentPane().invalidate();	
 		getContentPane().validate();
 		setVisible(true);
+	}
+	
+	public void closeNewOfficer() {
+		programState = "Officer Login";
+		getContentPane().remove(newOfficer);
+		add(officerLogin);
+		repaint();
 	}
 	
 	public void createTimer() {
@@ -106,7 +113,7 @@ public class Window extends JFrame implements ActionListener{
 		 * the following is the key to the different values it can hold:
 		 * - "Officer Login"
 		 * - "New Officer"
-		 * - "Home [default]"
+		 * - "Home"
 		 * - "Home [members]"
 		 * - "Home [roster]"
 		 */
@@ -117,7 +124,7 @@ public class Window extends JFrame implements ActionListener{
 		else if (programState.equals("New Officer")){
 			newOfficer.tick();
 		}
-		else if (programState.equals("Home [default]")){
+		else if (programState.equals("Home")){
 			home.tick();
 		}
 	}
@@ -125,8 +132,16 @@ public class Window extends JFrame implements ActionListener{
 	public void exit(){
 		DateFormat df = new SimpleDateFormat("MM/dd/yy HH:mm:ss");
 		Calendar calobj = Calendar.getInstance();
-		main.logger.log("-----Ended Application-----" + df.format(calobj.getTime()));
-		main.logger.write();
+		main.makeMembers.saveMembers();
+		logger.logAction("Member information successfully saved\n");
+		
+		if (officerLogin.loginChecker.new_officer_added) {
+			officerLogin.loginChecker.saveNewOfficer();
+			logger.log("One or more new officer(s) were added to the list");
+		}
+		
+		logger.log("-----Ended Application-----" + df.format(calobj.getTime()));
+		logger.write();
 		System.exit(0);
 	}
 	
